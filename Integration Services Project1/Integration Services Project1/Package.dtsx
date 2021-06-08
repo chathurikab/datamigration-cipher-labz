@@ -11,8 +11,8 @@
   DTS:LocaleID="5129"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="40"
-  DTS:VersionGUID="{771D88F9-37B1-4C5B-A143-DC6702995425}">
+  DTS:VersionBuild="41"
+  DTS:VersionGUID="{8D1B7C26-6599-4ACE-BBD1-43A201329C11}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -24,6 +24,16 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\Dadigama Database\customers-v1.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{EB7F20B6-D04D-4DBB-A687-4EECFAF3DB28}"
+      DTS:ObjectName="Excel Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\Dadigama Database\customers-v1.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -62,7 +72,445 @@
           <DTS:Variables />
           <DTS:ObjectData>
             <pipeline
-              version="1" />
+              version="1">
+              <components>
+                <component
+                  refId="Package\Address\Data Flow Task\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Address\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Address\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Address Line 1]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Address Line 1"
+                          lineageId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 1]" />
+                        <inputColumn
+                          refId="Package\Address\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Address Line 2]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Address Line 2"
+                          lineageId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 2]" />
+                        <inputColumn
+                          refId="Package\Address\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Address Line 3]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Address Line 3"
+                          lineageId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 3]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Address\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[addressline1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="512"
+                          lineageId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[addressline1]"
+                          name="addressline1"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[REPLACENULL](#{Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 1]},#{Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 2]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">REPLACENULL([Address Line 1],[Address Line 2])</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[addressline1a]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="512"
+                          lineageId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[addressline1a]"
+                          name="addressline1a"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[REPLACENULL](#{Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 2]},#{Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 3]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">REPLACENULL([Address Line 2],[Address Line 3])</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[addressline1b]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="512"
+                          lineageId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[addressline1b]"
+                          name="addressline1b"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[REPLACENULL](#{Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 1]},#{Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 3]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">REPLACENULL([Address Line 1],[Address Line 3])</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[addressline1c]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="512"
+                          lineageId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[addressline1c]"
+                          name="addressline1c"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[ISNULL](#{Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 1]}) ? [REPLACENULL](#{Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 1]},#{Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 2]}) : #{Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 1]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">ISNULL([Address Line 1]) ? REPLACENULL([Address Line 1],[Address Line 2]) : [Address Line 1]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Address\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Address\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Address\Data Flow Task\Excel Source"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Sheet1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Address\Data Flow Task\Excel Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 1]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 1]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Address Line 1]"
+                          length="255"
+                          lineageId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 1]"
+                          name="Address Line 1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Address Line 2]"
+                          length="255"
+                          lineageId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 2]"
+                          name="Address Line 2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 3]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Address Line 3]"
+                          length="255"
+                          lineageId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Address Line 3]"
+                          name="Address Line 3"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Costomer Code]"
+                          dataType="r8"
+                          name="Costomer Code" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Title]"
+                          dataType="wstr"
+                          length="255"
+                          name="Title" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Address Line 2]"
+                          dataType="wstr"
+                          length="255"
+                          name="Address Line 2" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Phone Number]"
+                          dataType="wstr"
+                          length="255"
+                          name="Phone Number" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F10]"
+                          dataType="wstr"
+                          length="255"
+                          name="F10" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F1]"
+                          dataType="wstr"
+                          length="255"
+                          name="F1" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer Nmae]"
+                          dataType="wstr"
+                          length="255"
+                          name="Customer Nmae" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Address Line 1]"
+                          dataType="wstr"
+                          length="255"
+                          name="Address Line 1" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Address Line 3]"
+                          dataType="wstr"
+                          length="255"
+                          name="Address Line 3" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F9]"
+                          dataType="wstr"
+                          length="255"
+                          name="F9" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F11]"
+                          dataType="wstr"
+                          length="255"
+                          name="F11" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F12]"
+                          dataType="wstr"
+                          length="255"
+                          name="F12" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F13]"
+                          dataType="wstr"
+                          length="255"
+                          name="F13" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F14]"
+                          dataType="wstr"
+                          length="255"
+                          name="F14" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F15]"
+                          dataType="wstr"
+                          length="255"
+                          name="F15" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F16]"
+                          dataType="wstr"
+                          length="255"
+                          name="F16" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F17]"
+                          dataType="wstr"
+                          length="255"
+                          name="F17" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F18]"
+                          dataType="wstr"
+                          length="255"
+                          name="F18" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F19]"
+                          dataType="wstr"
+                          length="255"
+                          name="F19" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F20]"
+                          dataType="wstr"
+                          length="255"
+                          name="F20" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F21]"
+                          dataType="wstr"
+                          length="255"
+                          name="F21" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F22]"
+                          dataType="wstr"
+                          length="255"
+                          name="F22" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F23]"
+                          dataType="wstr"
+                          length="255"
+                          name="F23" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F24]"
+                          dataType="date"
+                          name="F24" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F25]"
+                          dataType="date"
+                          name="F25" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F26]"
+                          dataType="wstr"
+                          length="255"
+                          name="F26" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F27]"
+                          dataType="wstr"
+                          length="255"
+                          name="F27" />
+                        <externalMetadataColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[F28]"
+                          dataType="wstr"
+                          length="255"
+                          name="F28" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Address Line 1]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Address Line 1]"
+                          name="Address Line 1" />
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Address Line 2]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Address Line 2]"
+                          name="Address Line 2" />
+                        <outputColumn
+                          refId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Address Line 3]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Address Line 3]"
+                          name="Address Line 3" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Address\Data Flow Task.Paths[Excel Source Output]"
+                  endId="Package\Address\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  name="Excel Source Output"
+                  startId="Package\Address\Data Flow Task\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -2046,17 +2494,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
           Size="151,42"
-          Id="Package\Person Title\Data Flow Task"
-          TopLeft="22.5,17.5" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="216,147"
-          Size="216,190"
-          Id="Package\Person Title"
-          TopLeft="53,37" />
-        <NodeLayout
-          Size="151,42"
           Id="Package\Address\Data Flow Task"
           TopLeft="36,16" />
         <ContainerLayout
@@ -2066,9 +2503,70 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           Size="211,169"
           Id="Package\Address"
           TopLeft="367,48" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Person Title\Data Flow Task"
+          TopLeft="22.5,17.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="216,147"
+          Size="216,190"
+          Id="Package\Person Title"
+          TopLeft="53,37" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\Address\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Address\Data Flow Task\Excel Source"
+          TopLeft="303,79" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Address\Data Flow Task\Derived Column"
+          TopLeft="354,199" />
+        <EdgeLayout
+          Id="Package\Address\Data Flow Task.Paths[Excel Source Output]"
+          TopLeft="372.5,121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="58.5,78"
+              Start="0,0"
+              End="58.5,70.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35"
+                    Point2="0,39"
+                    Point3="4,39" />
+                  <mssgle:LineSegment
+                    End="54.5,39" />
+                  <mssgle:CubicBezierSegment
+                    Point1="54.5,39"
+                    Point2="58.5,39"
+                    Point3="58.5,43" />
+                  <mssgle:LineSegment
+                    End="58.5,70.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
   <TaskHost
     design-time-name="Package\Person Title\Data Flow Task">
     <LayoutInfo>
@@ -2340,7 +2838,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Person Title\Data Flow Task\Excel Source">
+    design-time-name="Package\Person Title\Data Flow Task\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2353,7 +2851,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Person Title\Data Flow Task\OLE DB Destination">
+    design-time-name="Package\Person Title\Data Flow Task\Excel Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2371,7 +2869,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2381,10 +2879,23 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Address\Data Flow Task\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
